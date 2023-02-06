@@ -246,7 +246,7 @@ class Message extends StatelessWidget {
               children: [
                 GestureDetector(
                   onDoubleTap: () => onMessageDoubleTap?.call(context, message),
-                  onLongPress: () => onMessageLongPress?.call(context, message),
+                  // onLongPress: () => onMessageLongPress?.call(context, message),
                   onTap: () => onMessageTap?.call(context, message),
                   child: onMessageVisibilityChanged != null
                       ? VisibilityDetector(
@@ -278,8 +278,8 @@ class Message extends StatelessWidget {
               padding: InheritedChatTheme.of(context).theme.statusIconPadding,
               child: showStatus
                   ? GestureDetector(
-                      onLongPress: () =>
-                          onMessageStatusLongPress?.call(context, message),
+                      // onLongPress: () =>
+                      //     onMessageStatusLongPress?.call(context, message),
                       onTap: () => onMessageStatusTap?.call(context, message),
                       child: customStatusBuilder != null
                           ? customStatusBuilder!(message, context: context)
