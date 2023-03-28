@@ -20,6 +20,7 @@ class TextMessage extends StatelessWidget {
     required this.emojiEnlargementBehavior,
     required this.hideBackgroundOnEmojiMessages,
     required this.message,
+    this.messageFontSize,
     this.nameBuilder,
     this.onPreviewDataFetched,
     this.options = const TextMessageOptions(),
@@ -36,6 +37,9 @@ class TextMessage extends StatelessWidget {
 
   /// [types.TextMessage].
   final types.TextMessage message;
+
+  /// See [Message.messageFontSize].
+  final double? messageFontSize;
 
   /// This is to allow custom user name builder
   /// By using this we can fetch newest user info based on id
@@ -140,7 +144,11 @@ class TextMessage extends StatelessWidget {
         : InheritedChatTheme.of(context).theme.receivedMessageBodyLinkTextStyle;
     final bodyTextStyle = user.id == message.author.id
         ? theme.sentMessageBodyTextStyle
-        : theme.receivedMessageBodyTextStyle;
+        : messageFontSize == null
+            ? theme.receivedMessageBodyTextStyle
+            : theme.receivedMessageBodyTextStyle
+                .copyWith(fontSize: messageFontSize);
+
     final boldTextStyle = user.id == message.author.id
         ? theme.sentMessageBodyBoldTextStyle
         : theme.receivedMessageBodyBoldTextStyle;
